@@ -67,7 +67,10 @@ app.put("/api/owners/:id", (req, res) => {
 });
 // DELETE /api/owners/:id
 
-app.delete("/api/owners/:id", (req, res) => {});
+app.delete("/api/owners/:id", (req, res) => {
+  owners.pop(req.params.id);
+  res.send(owners);
+});
 
 // GET /api/owners/:id/pets
 
