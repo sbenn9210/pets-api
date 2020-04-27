@@ -132,6 +132,21 @@ app.put("/api/owners/:id/pets/:petId", (req, res) => {
 
 // DELETE /api/owners/:id/pets/:petId
 
+app.delete("/api/owners/:id/pets/:petId", (req, res) => {
+  let param = req.params.id;
+  let petID = req.params.petId;
+  owners.map((owner) => {
+    if (owner.id == param) {
+      owner.pets.map((pet) => {
+        if (pet.id == petID) {
+          owner.pets.splice(owner.pets.indexOf(pet), 1);
+          res.send(owner.pets);
+        }
+      });
+    }
+  });
+});
+
 app.listen(3000, function () {
   console.log("Pets API is now listening on port 3000...");
 });
